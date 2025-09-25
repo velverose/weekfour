@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Видеопродакшн</title>
   <style>
     * {
@@ -60,11 +60,22 @@
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      will-change: transform, filter;
+      cursor: pointer;
+    }
+
+    .hero img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1) saturate(1.1);
+      box-shadow: 0 8px 20px rgba(255, 165, 0, 0.5);
+      border-radius: 12px;
     }
 
     .hero h1 {
       font-size: 32px;
       margin: 20px 0 10px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
 
     .hero p {
@@ -79,6 +90,17 @@
       background-color: #1a1a1a;
       padding: 40px 20px;
       gap: 20px;
+
+      /* для плавного появления */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .services.is-visible {
+      opacity: 1;
+      transform: none;
     }
 
     .service {
@@ -93,6 +115,16 @@
       height: auto;
       border-radius: 8px;
       margin-bottom: 10px;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      will-change: transform, filter;
+      cursor: pointer;
+    }
+
+    .service img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1) saturate(1.1);
+      box-shadow: 0 8px 20px rgba(255, 165, 0, 0.5);
+      border-radius: 12px;
     }
 
     .service button {
@@ -103,6 +135,17 @@
       font-weight: bold;
       cursor: pointer;
       margin-top: 10px;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(255, 165, 0, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .service button:hover {
+      background-color: #ff9f00;
+      color: #111;
+      box-shadow: 0 6px 15px rgba(255, 165, 0, 0.7);
+      transform: translateY(-2px);
     }
 
     .section-centered {
@@ -111,6 +154,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .section-centered.is-visible {
+      opacity: 1;
+      transform: none;
     }
 
     .section-centered img {
@@ -119,16 +172,28 @@
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      will-change: transform, filter;
+      cursor: pointer;
+    }
+
+    .section-centered img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1) saturate(1.1);
+      box-shadow: 0 8px 20px rgba(255, 165, 0, 0.5);
+      border-radius: 12px;
     }
 
     .section-centered h2 {
       margin-bottom: 10px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
 
     .section-centered ul {
       list-style: disc;
       padding-left: 0;
       text-align: center;
+      margin: 0 0 20px;
     }
 
     .section-centered p {
@@ -144,12 +209,29 @@
       color: #000;
       font-weight: bold;
       cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(255, 165, 0, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .section-centered button:hover {
+      background-color: #ff9f00;
+      color: #111;
+      box-shadow: 0 6px 15px rgba(255, 165, 0, 0.7);
+      transform: translateY(-2px);
     }
 
     footer {
       background-color: #222;
       padding: 20px;
       font-size: 14px;
+    }
+
+    footer .phone {
+      color: orange;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     footer nav {
@@ -160,6 +242,11 @@
       color: #fff;
       text-decoration: none;
       margin: 0 10px;
+    }
+
+    /* Плавная прокрутка для якорей */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
@@ -175,7 +262,10 @@
     </nav>
     <div class="phone">8 800 700 30 30</div>
     <div class="hero">
-      <img src="https://images.pexels.com/photos/2752007/pexels-photo-2752007.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1000" alt="Креативное видео">
+      <img
+        src="https://images.pexels.com/photos/2752007/pexels-photo-2752007.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1000"
+        alt="Креативное видео"
+      />
       <h1>СНИМЕМ ДЛЯ ВАС КРЕАТИВНОЕ ВИДЕО</h1>
       <p>Профессиональная видеосъемка для вашего бизнеса и мероприятий</p>
     </div>
@@ -183,19 +273,28 @@
 
   <section class="services">
     <div class="service">
-      <img src="https://images.pexels.com/photos/7096/people-office-group-team.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=600" alt="Реклама">
+      <img
+        src="https://images.pexels.com/photos/7096/people-office-group-team.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=600"
+        alt="Реклама"
+      />
       <h2>Реклама</h2>
       <p>Создание рекламных роликов для ТВ и интернета</p>
       <button>Подробнее</button>
     </div>
     <div class="service">
-      <img src="https://images.pexels.com/photos/1647169/pexels-photo-1647169.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=600" alt="Видео-клип">
+      <img
+        src="https://images.pexels.com/photos/1647169/pexels-photo-1647169.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=600"
+        alt="Видео-клип"
+      />
       <h2>Видео-клип</h2>
       <p>Съемка музыкальных клипов для артистов и групп</p>
       <button>Подробнее</button>
     </div>
     <div class="service">
-      <img src="https://images.pexels.com/photos/265947/pexels-photo-265947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=600" alt="Свадьба">
+      <img
+        src="https://images.pexels.com/photos/265947/pexels-photo-265947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=600"
+        alt="Свадьба"
+      />
       <h2>Свадьба</h2>
       <p>Профессиональная съемка свадебных мероприятий</p>
       <button>Подробнее</button>
@@ -203,7 +302,10 @@
   </section>
 
   <section class="section-centered">
-    <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1000" alt="Новости и акции">
+    <img
+      src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1000"
+      alt="Новости и акции"
+    />
     <h2>НОВОСТИ И АКЦИИ</h2>
     <ul>
       <li>Снимем ваш клип на 50% дешевле</li>
@@ -212,9 +314,16 @@
   </section>
 
   <section class="section-centered">
-    <img src="https://images.pexels.com/photos/1181356/pexels-photo-1181356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1000" alt="Наша команда">
+    <img
+      src="https://images.pexels.com/photos/1181356/pexels-photo-1181356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=1000"
+      alt="Наша команда"
+    />
     <h2>О НАС</h2>
-    <p>Мы — команда профессионалов, специализирующихся на создании видео для бизнеса, мероприятий и артистов. Работаем по всей стране и гарантируем качество и креативный подход.</p>
+    <p>
+      Мы — команда профессионалов, специализирующихся на создании видео для
+      бизнеса, мероприятий и артистов. Работаем по всей стране и гарантируем
+      качество и креативный подход.
+    </p>
     <button>Подробнее</button>
   </section>
 
@@ -227,5 +336,30 @@
       <a href="#">Контакты</a>
     </nav>
   </footer>
+
+  <script>
+    // JS для эффекта появления при скролле
+    const fadeSections = document.querySelectorAll('.services, .section-centered');
+
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    fadeSections.forEach(section => {
+      appearOnScroll.observe(section);
+    });
+  </script>
 </body>
 </html>
